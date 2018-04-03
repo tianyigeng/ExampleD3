@@ -32,12 +32,12 @@ body {
     var lowColor = '#9edbca'
     var highColor = '#bc2a66'
 
-    var project = d3.geo.albersUsa()
+    var project = d3.geoAlbersUsa()
         .scale([1000])
         .translate([width/2, height/2]);
 
-    var path = d3.geo.path()
-        .projection(projection);
+    var path = d3.geoPath()
+        .projection(project);
 
     var svg = d3.select('body')
         .append('svg')
@@ -49,8 +49,8 @@ body {
     	for (var d = 0; d < data.length; d++) {
     		dataArray.push(parseFloat(data[d].value))
     	}
-    	var = minVal = d3.min(dataArray);
-    	var = maxVal = d3.max(dataArray);
+    	var minVal = d3.min(dataArray);
+    	var maxVal = d3.max(dataArray);
     	var ramp = d3.scaleLinear().domain([minVal,maxVal]).range([lowColor,highColor]);
 
     	d3.json('us-states.json', function(json){
